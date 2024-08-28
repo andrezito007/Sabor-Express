@@ -1,5 +1,10 @@
 import os
 
+medicamentos = [{"nome":"Paracetamol", "Categoria":"Tarja Branca","ativo": True},
+    {"nome":"Valium", "Categoria":"Tarja Preta","ativo": False},
+    {"nome":"Ritalina", "Categoria":"Tarja Amarela","ativo": True}]
+
+
 def mostra_titulo():
     print("""
     ███████╗░█████╗░██████╗░███╗░░░███╗░█████╗░░█████╗░██╗░█████╗░        
@@ -22,7 +27,36 @@ def mostra_escolhas():
     print("3. Ativar Estoque ")
     print("4. Sair")
 
-def mostra_opcao():
+def escolhe_opcao():
+
+    def exibir_subtitulo(texto):
+        os.system("cls")
+        print(texto)
+        print(" ")
+
+    def retorna_menu():
+        input(" Digite uma tecla para voltar ao menu principal ")
+        main()
+
+    def cadastrar_medicamentos():
+        exibir_subtitulo("Cadastar medicamentos")
+        nome_medicamento = input(" Digite o nome do medicamento que deseja cadastrar ")
+        medicamentos.append(nome_medicamento)
+        print(f" O mediacamento {nome_medicamento} foi cadastrado com sucesso\n")
+
+        retorna_menu()
+        
+
+    def listar_medicamentos():
+        exibir_subtitulo("Lista de medicamentos cadastrados")
+        for medicamento in medicamentos:
+            nome_medicamento = medicamento["nome"]
+            categoria_medicamento = medicamento["Categoria"]
+            ativo = medicamento["ativo"]
+            print(f" - {nome_medicamento} | {categoria_medicamento} | {ativo}")
+
+        retorna_menu()
+
 
     def finalizar_programa():
         os.system("cls") 
@@ -38,9 +72,9 @@ def mostra_opcao():
         opcao_escolhida = int(input("Escolha uma opção: "))
 
         if opcao_escolhida == 1:
-            print("Você escolheu Cadastrar Medicamentos")
+            cadastrar_medicamentos()
         elif opcao_escolhida == 2:
-            print("Você escolheu Listar Medicamentos")
+            listar_medicamentos()
         elif opcao_escolhida == 3:
             print("Você escolheu Ativar Estoque")
         elif opcao_escolhida == 4:
@@ -53,7 +87,7 @@ def mostra_opcao():
 def main():
     mostra_titulo()
     mostra_escolhas()
-    mostra_opcao()
+    escolhe_opcao()
 
 if __name__ == "__main__":
     main()
