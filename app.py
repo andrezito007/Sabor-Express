@@ -38,10 +38,13 @@ def escolhe_opcao():
         input(" Digite uma tecla para voltar ao menu principal ")
         main()
 
-    def cadastrar_medicamentos():
+    def cadastra_medicamentos():
         exibir_subtitulo("Cadastar medicamentos")
+
         nome_medicamento = input(" Digite o nome do medicamento que deseja cadastrar ")
-        medicamentos.append(nome_medicamento)
+        categoria_medicamento = input( f"Digite a categoria do {nome_medicamento} para cadastrar: ")
+        dados_do_medicamento = {"nome":nome_medicamento, "Categoria":categoria_medicamento, "ativo":True}
+        medicamentos.append(dados_do_medicamento)
         print(f" O mediacamento {nome_medicamento} foi cadastrado com sucesso\n")
 
         retorna_menu()
@@ -72,7 +75,7 @@ def escolhe_opcao():
         opcao_escolhida = int(input("Escolha uma opção: "))
 
         if opcao_escolhida == 1:
-            cadastrar_medicamentos()
+            cadastra_medicamentos()
         elif opcao_escolhida == 2:
             listar_medicamentos()
         elif opcao_escolhida == 3:
