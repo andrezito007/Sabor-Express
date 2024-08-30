@@ -31,8 +31,11 @@ def mostra_escolhas():
 def escolhe_opcao():
 
     def exibir_subtitulo(texto):
-        os.system("clear")
+        os.system("cls")
+        linha = "_" * 65
+        print(linha)
         print(texto)
+        print(linha)
         print(" ")
 
     def retorna_menu():
@@ -56,26 +59,28 @@ def escolhe_opcao():
         for medicamento in medicamentos:
             nome_medicamento = medicamento["nome"]
             categoria_medicamento = medicamento["Categoria"]
-            ativo = medicamento["ativo"]
-            print(f" - {nome_medicamento} | {categoria_medicamento} | {ativo}")
+            ativo = "Com estoque" if medicamento["ativo"] else "Sem estoque"
+            print(f" - {nome_medicamento.ljust(20)} | {categoria_medicamento.ljust(20)} | {ativo}")
         retorna_menu()
         
-    def ativar_medicamentos():
+    def ativar_medicamento():
         exibir_subtitulo("Ativar medicamento")
-        nome_medicamento = input("Digite o nome do medicamento que deeja ativar: ")
+        nome_medicamento = input("Digite o nome do medicamento que deseja ativar: ")
         medicamento_encontrado = False
 
         for medicamento in medicamentos:
-            if nome_medicamento == mediacamento["nome"]:
+            if nome_medicamento == medicamento["nome"]:
                 medicamento_encontrado = True
-                medicamento["ativo"] = not mediacamento["ativo"]
+                medicamento["ativo"] = not medicamento["ativo"]
                 mensagem = f"{nome_medicamento} foi ativado com sucesso" if medicamento["ativo"] else f"A categoria {nome_medicamento} foi desatiavda"
                 print(mensagem)
         if not medicamento_encontrado:
-            print("Não encontrado, favor digite:")
+            print("Não encontrado")
+        retorna_menu()
+            
 
     def finalizar_programa():
-        os.system("clear") 
+        os.system("cls") 
         print("Finalizando o programa\n") 
 
     def opcao_invalida():
@@ -92,7 +97,7 @@ def escolhe_opcao():
         elif opcao_escolhida == 2:
             listar_medicamentos()
         elif opcao_escolhida == 3:
-            print("Você escolheu Ativar Estoque")
+            ativar_medicamento()
         elif opcao_escolhida == 4:
             finalizar_programa()
         else:
