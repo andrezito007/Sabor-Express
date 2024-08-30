@@ -7,19 +7,20 @@ medicamentos = [{"nome":"Paracetamol", "Categoria":"Tarja Branca","ativo": True}
 
 def mostra_titulo():
     print("""
-    ███████╗░█████╗░██████╗░███╗░░░███╗░█████╗░░█████╗░██╗░█████╗░        
-    ██╔════╝██╔══██╗██╔══██╗████╗░████║██╔══██╗██╔══██╗██║██╔══██╗
-    █████╗░░███████║██████╔╝██╔████╔██║███████║██║░░╚═╝██║███████║
-    ██╔══╝░░██╔══██║██╔══██╗██║╚██╔╝██║██╔══██║██║░░██╗██║██╔══██║                         
-    ██║░░░░░██║░░██║██║░░██║██║░╚═╝░██║██║░░██║╚█████╔╝██║██║░░██║
-    ╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝╚═╝░░╚═╝     
+    
+███████╗░█████╗░██████╗░███╗░░░███╗░█████╗░░█████╗░██╗░█████╗░
+██╔════╝██╔══██╗██╔══██╗████╗░████║██╔══██╗██╔══██╗██║██╔══██╗
+█████╗░░███████║██████╔╝██╔████╔██║███████║██║░░╚═╝██║███████║
+██╔══╝░░██╔══██║██╔══██╗██║╚██╔╝██║██╔══██║██║░░██╗██║██╔══██║
+██║░░░░░██║░░██║██║░░██║██║░╚═╝░██║██║░░██║╚█████╔╝██║██║░░██║
+╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝╚═╝░░╚═╝
 
-    ░█████╗░███╗░░██╗██████╗░██████╗░███████╗
-    ██╔══██╗████╗░██║██╔══██╗██╔══██╗██╔════╝
-    ███████║██╔██╗██║██║░░██║██████╔╝█████╗░░
-    ██╔══██║██║╚████║██║░░██║██╔══██╗██╔══╝░░
-    ██║░░██║██║░╚███║██████╔╝██║░░██║███████╗
-    ╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚══════╝""")
+██████╗░███████╗███╗░░░███╗░░░░░░███████╗░██████╗████████╗░█████╗░██████╗░
+██╔══██╗██╔════╝████╗░████║░░░░░░██╔════╝██╔════╝╚══██╔══╝██╔══██╗██╔══██╗
+██████╦╝█████╗░░██╔████╔██║█████╗█████╗░░╚█████╗░░░░██║░░░███████║██████╔╝
+██╔══██╗██╔══╝░░██║╚██╔╝██║╚════╝██╔══╝░░░╚═══██╗░░░██║░░░██╔══██║██╔══██╗
+██████╦╝███████╗██║░╚═╝░██║░░░░░░███████╗██████╔╝░░░██║░░░██║░░██║██║░░██║
+╚═════╝░╚══════╝╚═╝░░░░░╚═╝░░░░░░╚══════╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝""")
 
 def mostra_escolhas():
     print("1. Cadastrar Medicamentos")
@@ -30,7 +31,7 @@ def mostra_escolhas():
 def escolhe_opcao():
 
     def exibir_subtitulo(texto):
-        os.system("cls")
+        os.system("clear")
         print(texto)
         print(" ")
 
@@ -57,12 +58,24 @@ def escolhe_opcao():
             categoria_medicamento = medicamento["Categoria"]
             ativo = medicamento["ativo"]
             print(f" - {nome_medicamento} | {categoria_medicamento} | {ativo}")
-
         retorna_menu()
+        
+    def ativar_medicamentos():
+        exibir_subtitulo("Ativar medicamento")
+        nome_medicamento = input("Digite o nome do medicamento que deeja ativar: ")
+        medicamento_encontrado = False
 
+        for medicamento in medicamentos:
+            if nome_medicamento == mediacamento["nome"]:
+                medicamento_encontrado = True
+                medicamento["ativo"] = not mediacamento["ativo"]
+                mensagem = f"{nome_medicamento} foi ativado com sucesso" if medicamento["ativo"] else f"A categoria {nome_medicamento} foi desatiavda"
+                print(mensagem)
+        if not medicamento_encontrado:
+            print("Não encontrado, favor digite:")
 
     def finalizar_programa():
-        os.system("cls") 
+        os.system("clear") 
         print("Finalizando o programa\n") 
 
     def opcao_invalida():
